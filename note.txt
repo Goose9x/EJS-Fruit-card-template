@@ -1,0 +1,25 @@
+Yêu cầu bài này:
+Dùng EJS để in ra các thẻ hoa quả, với dữ liệu data.json có sẵn
+
+
+
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const cors = require("cors");
+const ejs = require("ejs");
+const fs = require("fs");
+// import route
+let userRoutes = require("./routes/users.route");
+let homepageRoutes = require("./routes/homepage.route");
+
+// Setup template engine
+app.set("view engine", "ejs");
+app.set("views", `${__dirname}/views`);
+// User 3party middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.static("public"));
